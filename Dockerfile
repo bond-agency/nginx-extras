@@ -15,8 +15,6 @@ WORKDIR /etc/nginx
 
 EXPOSE 80
 
-HEALTHCHECK --start-period=1m CMD curl --fail http://localhost:80 || exit 1
-
 # Forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	  && ln -sf /dev/stderr /var/log/nginx/error.log
