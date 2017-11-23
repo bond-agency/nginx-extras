@@ -17,6 +17,11 @@ EXPOSE 80
 
 # Forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-	  && ln -sf /dev/stderr /var/log/nginx/error.log
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x  /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["docker-entrypoint.sh"]
 
 CMD ["nginx", "-g", "daemon off;"]
