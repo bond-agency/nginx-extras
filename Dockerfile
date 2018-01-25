@@ -11,6 +11,10 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C && \
     nginx-extras curl && \
     apt-get purge
 
+# Set timezone to Helsinki
+ENV TZ=Europe/Helsinki
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 WORKDIR /etc/nginx
 
 EXPOSE 80
